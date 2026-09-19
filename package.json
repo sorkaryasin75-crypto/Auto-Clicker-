@@ -1,0 +1,12 @@
+{
+  "name": "github-actions-automation",
+  "version": "1.0.0",
+  "description": "Automated web visiting bot using GitHub Actions and Playwright",
+  "main": "script.js",
+  "scripts": {
+    "start": "node script.js"
+  },
+  "dependencies": {
+    "playwright": "^1.40.0"
+  }
+}
