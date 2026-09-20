@@ -11,7 +11,7 @@ on:
       repeat_count:
         description: 'Total Visit Count (Repeat)'
         required: true
-        default: '500'
+        default: '5000'
 
   # ২. অটোমেটিক প্রতি ৩ ঘণ্টা পর পর চালানের জন্য (Cron Job)
   schedule:
