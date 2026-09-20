@@ -1,19 +1,19 @@
-name: Automated Web Clicker Bot
+name: Advanced Web Automation & Ad Clicker Bot
 
 on:
-  # ১. GitHub Actions UI থেকে ম্যানুয়ালি চালানের অপশন
+  # ১. GitHub Actions UI থেকে ম্যানুয়ালি ইনপুট দিয়ে চালানের জন্য
   workflow_dispatch:
     inputs:
       target_url:
-        description: 'Target Website Link'
+        description: 'Target Website URL'
         required: true
-        default: 'https://educationpointbd24.blogspot.com/?m=1'
+        default: 'https://educationpointbd24.blogspot.com/2024/11/update-methods.html?m=1'
       repeat_count:
-        description: 'Total Visit Count (Repeat)'
+        description: 'Total Cycles / Visit Count'
         required: true
         default: '5000'
 
-  # ২. অটোমেটিক প্রতি ৩ ঘণ্টা পর পর চালানের জন্য (Cron Job)
+  # ২. নির্দিষ্ট সময় পর পর অটোমেটিক চালানের জন্য (এখানে ৩ ঘণ্টা পর পর সেট করা আছে)
   schedule:
     - cron: '0 */3 * * *'
 
@@ -22,28 +22,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # ১. রিপোজিটরি কোড ডাউনলোড
+      # ১. রিপোজিটরি কোড ডাউনলোড করা
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # ২. Node.js ইনস্টলেশন
+      # ২. Node.js পরিবেশ সেটআপ করা (v18)
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      # ৩. প্রজেক্টের প্যাকেজসমূহ ইনস্টল
+      # ৩. প্রজেক্ট প্যাকেজ ইনস্টল করা
       - name: Install Dependencies
         run: npm install
 
-      # ৪. Playwright ব্রাউজার এবং সিস্টেম ডিপেন্ডেন্সি ইনস্টল
+      # ৪. Playwright ব্রাউজার ও সিস্টেম ডিপেন্ডেন্সি ইনস্টল করা
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      # ৫. আপডেট করা অটোমেশন স্ক্রিপ্ট কাস্টম ভেরিয়েবল সহ রান করা
-      - name: Run Automation Script
+      # ৫. অটোমেশন স্ক্রিপ্ট এনভায়রনমেন্ট ভেরিয়েবল সহ রান করা
+      - name: Run Playwright Script
         env:
-          # ম্যানুয়ালি ইনপুট দিলে সেটি নিবে, নতুবা ডিফল্ট লিংক ও কাউন্ট নিবে
+          # UI ইনপুট থেকে মান নিবে, ম্যানুয়ালি না চালালে ডিফল্ট লিংক ও কাউন্ট নিবে
           TARGET_URL: ${{ github.event.inputs.target_url || 'https://example.com' }}
           REPEAT_COUNT: ${{ github.event.inputs.repeat_count || '5' }}
         run: node script.js
