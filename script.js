@@ -7,7 +7,7 @@ const { chromium } = require('playwright');
   const page = await context.newPage();
 
   // আপনার টার্গেট লিংকটি এখানে প্রদান করুন
-  const TARGET_URL = 'https://example.com'; 
+  const TARGET_URL = 'https://www.profitableratecpmnetwork.com/arv0c39syb?key=f12896aeee9e20af115026dcd5d25809'; 
   
   // আপনি কতবার ক্লিক ও ব্যাক করতে চান (পুনরাবৃত্তি)
   const REPEAT_COUNT = 5; 
